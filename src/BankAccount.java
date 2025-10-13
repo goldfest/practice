@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Random;
+import java.time.format.DateTimeFormatter;
 
 public class BankAccount {
     //поля класса
@@ -49,7 +50,8 @@ public class BankAccount {
 
     //перевод денег на другой счет
     public boolean transfer(BankAccount otherAccount, int amount) {
-        if (isBlocked || otherAccount.isBlocked || amount <= 0 || amount > balance) {
+        if (otherAccount == null || otherAccount == this || isBlocked ||
+                otherAccount.isBlocked || amount <= 0 || amount > balance) {
             return false;
         }
         this.balance -= amount;
@@ -88,10 +90,11 @@ public class BankAccount {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return "BankAccount{" +
                 "ownerName='" + ownerName + '\'' +
                 ", balance=" + balance +
-                ", openingDate=" + openingDate +
+                ", openingDate=" + openingDate.format(formatter) +
                 ", isBlocked=" + isBlocked +
                 ", accountNumber='" + accountNumber + '\'' +
                 '}';
