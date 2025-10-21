@@ -37,5 +37,6 @@ public class Main {
         BankAccount account3 = new BankAccount("Иван Лобашов");
         System.out.println("account1 equals account2: " + account1.equals(account2));
         System.out.println("account1 equals account3: " + account1.equals(account3));
+
     }
 }
